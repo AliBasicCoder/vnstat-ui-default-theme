@@ -1,0 +1,83 @@
+{
+  "name": "default",
+  "htmlFile": "public/index.html",
+  "jsFiles": ["public/build/bundle.js"],
+  "cssFiles": [
+    "public/css/global.css",
+    "public/css/fontello.css",
+    "public/css/bootstrap.min.css",
+    "public/build/bundle.css"
+  ],
+  "options": {
+    "chart": {
+      "type": "object",
+      "attrs": {
+        "colors": {
+          "type": "object",
+          "attrs": {
+            "down": {
+              "type": "string"
+            },
+            "up": {
+              "type": "string"
+            },
+            "total": {
+              "type": "string"
+            }
+          }
+        },
+        "legend": {
+          "type": "object",
+          "attrs": {
+            "display": {
+              "type": "boolean"
+            },
+            "position": {
+              "type": "string",
+              "oneOf": ["right", "left", "top", "bottom"]
+            },
+            "align": {
+              "type": "string",
+              "oneOf": ["start", "end", "center"]
+            }
+          }
+        }
+      }
+    },
+    "useCustomInterfaces": {
+      "type": "boolean"
+    },
+    "customInterfaces": {
+      "type": "object",
+      "attrs": {
+        "__any": {
+          "type": "string"
+        }
+      }
+    },
+    "black": {
+      "type": "boolean"
+    },
+    "clickAndHoverToSelect": {
+      "type": "boolean"
+    }
+  },
+  "defaultOptions": {
+    "chart": {
+      "colors": {
+        "down": "red",
+        "up": "blue",
+        "total": "orange"
+      },
+      "legend": {
+        "display": true,
+        "position": "right",
+        "align": "center"
+      }
+    },
+    "useCustomInterfaces": false,
+    "customInterfaces": {},
+    "black": false,
+    "clickAndHoverToSelect": false
+  }
+}
