@@ -53,8 +53,8 @@
 >
   <thead>
     <th>{time}</th>
-    <th>Recived</th>
-    <th>Send</th>
+    <th>Download</th>
+    <th>Upload</th>
     <th>Total</th>
   </thead>
   <tbody>
