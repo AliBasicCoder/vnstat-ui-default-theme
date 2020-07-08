@@ -66,8 +66,8 @@
   <table>
     <thead>
       <tr>
-        <th>Received</th>
-        <th>Send</th>
+        <th>Download</th>
+        <th>Upload</th>
         <th>Total</th>
       </tr>
     </thead>
