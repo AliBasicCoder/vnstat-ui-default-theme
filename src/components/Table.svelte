@@ -66,8 +66,8 @@
         class:black
       >
         <td>{label}</td>
-        <td>{convertSize(upData[i], { accuracy: 1 })}</td>
         <td>{convertSize(downData[i], { accuracy: 1 })}</td>
+        <td>{convertSize(upData[i], { accuracy: 1 })}</td>
         <td>{convertSize(upData[i] + downData[i], { accuracy: 1 })}</td>
       </tr>
     {/each}
