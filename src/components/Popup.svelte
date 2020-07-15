@@ -16,8 +16,27 @@
     left: 50%;
   }
 
+  div.top {
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
   div.notActive {
     display: none;
+  }
+
+  @media only screen and (min-width: 1064px) {
+    div.top {
+      top: 33%;
+    }
+  }
+
+  @media only screen and (max-width: 868px) {
+    div.top {
+      top: 24%;
+    }
   }
 </style>
 
@@ -25,6 +44,8 @@
   export let active = true;
   export let backgroundColor = "#aeaeae8a";
   export let text;
+  $: top = text.split("\n")[0].slice(7);
+  $: bottom = text.slice(text.indexOf("\n") + 1).replace(/\n/g, "<br />");
 </script>
 
 <div
@@ -32,7 +53,10 @@
   class:notActive="{!active}"
   style="{`background-color: ${backgroundColor};`}"
 >
+  <div class="top">
+    <h3>{top}</h3>
+  </div>
   <div class="inner">
-    {@html text.replace(/\n/g, '<br />')}
+    {@html bottom}
   </div>
 </div>
