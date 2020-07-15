@@ -696,10 +696,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-vnstat-ui-deps@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/vnstat-ui-deps/-/vnstat-ui-deps-1.0.4.tgz#4181f9b71eaa3e89a3282d1939fdb7090867f021"
-  integrity sha512-uyb4uF3rvfzkV23r0ZC3rvd+0ad1oLHr5lRqzg5167MwjwBXfjTIVTYUnGX3OrxCAgk4m/EtA3a+HUQql8ZAQw==
+vnstat-ui-deps@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vnstat-ui-deps/-/vnstat-ui-deps-1.0.5.tgz#58d196c7a8ada324437e23c132afb9d3d163b4f3"
+  integrity sha512-UTF/4x3oDbpP5O0gTUPVjR/oheumeQiS6co1g1kq3MwManBAK8vaL0Tsn5/YHbPQTwVLTmGZyjMJSvweb8HeXw==
   dependencies:
     axios "^0.19.2"
     convert-size "^1.0.7"

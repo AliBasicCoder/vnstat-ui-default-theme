@@ -37,6 +37,6 @@
     "lodash": "^4.17.19",
     "sirv-cli": "^0.4.4",
     "synchronized-promise": "^0.3.1",
-    "vnstat-ui-deps": "^1.0.4"
+    "vnstat-ui-deps": "^1.0.5"
   }
 }
