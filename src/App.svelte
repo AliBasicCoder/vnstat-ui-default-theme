@@ -1,19 +1,21 @@
 <script>
-  import Tabs from "./components/Tabs.svelte";
-  import Footer from "./components/Footer.svelte";
-  import Header from "./components/Header.svelte";
-  import CT from "./components/CT.svelte";
-  import { store } from "./stores/store.js";
   import { onDestroy } from "svelte";
-  import { defaultOptions } from "../data.json";
   import {
     getHourlyData,
     getDailyData,
     getMonthlyData,
     get5MinData,
     getYearlyData,
-    isV2Data,
+    isV2Data
   } from "vnstat-ui-deps";
+  import { store } from "./stores/store.js";
+  import { errors } from "./stores/errors.js";
+  import { defaultOptions } from "../data.json";
+  import Tabs from "./components/Tabs.svelte";
+  import Footer from "./components/Footer.svelte";
+  import Header from "./components/Header.svelte";
+  import CT from "./components/CT.svelte";
+  import Popup from "./components/Popup.svelte";
 
   const baseNames = ["Hourly", "Daily", "Monthly"];
   $: isV2 = isV2Data($store.data);
@@ -24,34 +26,35 @@
     hourly: getHourlyData($store.data, $store.selectedInterface),
     daily: getDailyData($store.data, $store.selectedInterface),
     monthly: getMonthlyData($store.data, $store.selectedInterface),
-    yearly: isV2 && getYearlyData($store.data, $store.selectedInterface),
+    yearly: isV2 && getYearlyData($store.data, $store.selectedInterface)
   };
   $: props = [
     isV2 && {
       time: "5 Min",
-      ...tableData.fiveMin,
+      ...tableData.fiveMin
     },
     {
       time: "Hour",
-      ...tableData.hourly,
+      ...tableData.hourly
     },
     {
       time: "Day",
-      ...tableData.daily,
+      ...tableData.daily
     },
     {
       time: "Month",
-      ...tableData.monthly,
+      ...tableData.monthly
     },
     isV2 && {
       time: "Year",
-      ...tableData.yearly,
-    },
+      ...tableData.yearly
+    }
   ].filter(Boolean);
 
   $: some = $store.config.black && document.body.classList.add("black");
 </script>
 
 <Header />
-<Tabs names="{names}" tabs="{tabs}" props="{props}" />
+<Tabs {names} {tabs} {props} />
 <Footer />
+<Popup active="{$errors.length >= 1}" text="{$errors}" />
