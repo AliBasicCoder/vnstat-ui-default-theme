@@ -13,16 +13,9 @@
   $: aDownData = [...downData].reverse();
   $: aUpData = [...upData].reverse();
   $: config = $store.config;
-  $: options = config
-    ? chartConfig(config, aLabels, aDownData, aUpData)
-    : undefined;
+  $: options = chartConfig(config, aLabels, aDownData, aUpData);
 </script>
 
-<Chart options="{options}" />
-<Table
-  time="{time}"
-  labels="{labels}"
-  downData="{downData}"
-  upData="{upData}"
-/>
-<Float time="{time}" />
+<Chart {options} />
+<Table {time} {labels} {downData} {upData} />
+<Float {time} />

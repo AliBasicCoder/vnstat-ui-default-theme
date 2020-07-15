@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { writable } from "svelte/store";
+import { merge } from "lodash";
 import { defaultOptions } from "../../data.json";
 import { init } from "./selStore.js";
 import {
@@ -13,8 +14,7 @@ export async function getEveryThing() {
   const data = await getData();
   const fullConfig = await getConfig();
   /** @type {DefaultThemeConfig} */
-  const config = Object.assign(
-    {},
+  const config = merge(
     defaultOptions,
     fullConfig.config.client.themeConfig
   );
