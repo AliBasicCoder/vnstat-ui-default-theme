@@ -21,11 +21,13 @@
   label.navbar-brand {
     margin-bottom: 0px;
   }
+
 </style>
 
 <script>
   import { getEveryThing } from "../stores/store";
-  import { store } from "../stores/store.js";
+  import { store, interfaceExists } from "../stores/store.js";
+  import { errors } from "../stores/errors.js";
 
   $: selInterface = $store.selectedInterface;
   $: interfacesList = $store.interfacesList;
@@ -37,9 +39,14 @@
   }
 
   function update(selInterface) {
+    if (!interfaceExists(selInterface, $store.data)) {
+      errors.set(new Error(`interface ${selInterface} doesn't exist`).stack);
+      return;
+    }
     history.pushState("", "", `/?i=${selInterface}`);
     getEveryThing().then((res) => store.set(res));
   }
+
 </script>
 
 <nav class="navbar sticky-top" class:black>

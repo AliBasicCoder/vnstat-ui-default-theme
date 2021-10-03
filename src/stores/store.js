@@ -9,7 +9,6 @@ import {
   getInterfacesList,
   getSelectedInterface,
   getData,
-  getMonthlyData,
 } from "vnstat-ui-deps";
 
 export async function getEveryThing() {
@@ -34,15 +33,20 @@ export async function getEveryThing() {
         value: item,
       }));
     }
-    console.log(config.useCustomInterfaces, interfacesList);
-    const selectedInterface = getSelectedInterface() ||
-      (config.useCustomInterfaces
-        ? Object.keys(config.customInterfaces)[0]
-        : interfacesList[0].value) ||
-      interfacesList[0].value;
+    let selectedInterface = getSelectedInterface() || interfacesList[0].value;
+    if (!interfaceExists(selectedInterface, data)) {
+      if (getSelectedInterface()) throw new Error(`interface "${getSelectedInterface()}" doesn't exist`);
+      let found = false;
+      for (let i = 1; i < interfacesList.length; i++) {
+        if (interfaceExists(interfacesList[i].value, data)) {
+          selectedInterface = interfacesList[i].value;
+          found = true;
+          break;
+        }
+      }
+      if (!found) throw new Error(`Couldn't find any working interface`);
+    }
     if (config.clickAndHoverToSelect) init();
-    // test if interface exits
-    getMonthlyData(data, selectedInterface);
     return {
       data,
       fullConfig,
@@ -54,6 +58,22 @@ export async function getEveryThing() {
     errors.set(error.stack);
     throw error;
   }
+}
+
+/**
+ * @returns {boolean}
+ * @param {string} inter
+ */
+export function interfaceExists(inter, data) {
+  if (inter.indexOf("+") !== -1) {
+    for (const item of inter.split("+")) {
+      if (data.interfaces.find(inter2 => (inter2.name || inter2.id) === item) === undefined)
+        return false;
+    }
+    return true;
+  }
+
+  return data.interfaces.find(inter2 => (inter2.name || inter2.id) === inter) !== undefined;
 }
 
 export const store = writable({
