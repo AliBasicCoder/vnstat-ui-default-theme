@@ -34,11 +34,12 @@ export async function getEveryThing() {
         value: item,
       }));
     }
+    console.log(config.useCustomInterfaces, interfacesList);
     const selectedInterface = getSelectedInterface() ||
       (config.useCustomInterfaces
         ? Object.keys(config.customInterfaces)[0]
-        : interfacesList[0]) ||
-      interfacesList[0];
+        : interfacesList[0].value) ||
+      interfacesList[0].value;
     if (config.clickAndHoverToSelect) init();
     // test if interface exits
     getMonthlyData(data, selectedInterface);

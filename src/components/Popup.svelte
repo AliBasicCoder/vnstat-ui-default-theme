@@ -43,7 +43,7 @@
 <script>
   export let active = true;
   export let backgroundColor = "#aeaeae8a";
-  export let text;
+  export let text = [];
   $: top = text.split("\n")[0].slice(7);
   $: bottom = text.slice(text.indexOf("\n") + 1).replace(/\n/g, "<br />");
 </script>
