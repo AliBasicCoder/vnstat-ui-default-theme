@@ -33,7 +33,7 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "chartjs-plugin-zoom": "^0.7.7",
-    "convert-size": "^1.0.9",
+    "convert-size": "^1.2.0",
     "lodash": "^4.17.19",
     "sirv-cli": "^0.4.4",
     "synchronized-promise": "^0.3.1",
